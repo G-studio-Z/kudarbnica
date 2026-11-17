@@ -203,6 +203,8 @@ input[type=range]{flex:1;min-height:0;height:32px;padding:0;border:0;background:
   .nav .btn-primary{display:none}
 }
 
+@media (max-width:400px){.nav .logo{font-size:17px}.nav .logo svg{width:22px;height:22px}.lang button{padding:0 7px;font-size:13px}.menu-btn{width:40px;height:40px}.nav .wrap{gap:8px}}
+
 /* reveal */
 .js .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
 .js .reveal.in{opacity:1;transform:none}
@@ -269,9 +271,10 @@ input[type=range]{flex:1;min-height:0;height:32px;padding:0;border:0;background:
       </ul>
     </nav>
     <div class="nav-right">
-      <div class="lang" role="group" aria-label="Valoda / Язык">
+      <div class="lang" role="group" aria-label="Valoda / Язык / Language">
         <button type="button" data-lang="lv" aria-pressed="true">LV</button>
         <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
       </div>
       <a class="btn btn-primary" href="#pasutit" data-i18n="navOrder">Pasūtīt</a>
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="navlinks" aria-label="Izvēlne" data-i18n-aria="menu">
@@ -651,6 +654,54 @@ input[type=range]{flex:1;min-height:0;height:32px;padding:0;border:0;background:
 
 <script>
 const T = {
+  en: {
+    skip:"Skip to content", navLabel:"Main navigation", menu:"Menu",
+    navCakes:"Cakes", navCalc:"Price", orderThis:"Order this", close:"Close", prev:"Previous", next:"Next", fUnsure2:"Not sure yet",
+    calcEyebrow:"Calculator", calcTitle:"See an estimated price right away", calcLead:"Choose a cake, the number of guests and the decoration. We confirm the exact price after your request.",
+    kType:"Cake type", kGuests:"Number of guests", kPieces:"Number of cupcakes", kDecor:"Decoration", d1:"Simple / lettering", d2:"Figurines +15 €", d3:"Fresh flowers +25 €", kDelivery:"Delivery in Riga (from 8 €)",
+    kResult:"Estimated price", kWeight:"Weight", kQtyPcs:"Quantity", kBase:"Cake", kDel:"Delivery", kOrder:"Order with these options", kNote:"Demo prices. The final price depends on the design.",
+    p3plus:"Pistachio & raspberry (+6 €/kg)", guestsWord:"guests", pcs:"pcs", kgUnit:"kg", none:"—", fixed:"fixed", included:"included", pickup:"pickup", from:"from",
+    calcDesign:"From the calculator: {type}, ~{guests} guests, decoration: {decor}.", navHow:"How to order", navFill:"Fillings", navFaq:"FAQ", navOrder:"Order",
+    heroEyebrow:"Custom cakes in Riga", heroTitle:"A cake made for your celebration",
+    heroLead:"Handmade with real butter, cream and chocolate. Tell us about your celebration — we will suggest a design, filling and price within one day.",
+    ctaOrder:"Order a cake", ctaWorks:"See our cakes",
+    fact1:"Orders from 3 days ahead", fact2:"Delivery all over Riga", fact3:"From 38 €/kg",
+    heroAlt:"Three-tier white cake with cherries", badgeTitle:"Reply within 1 day", badgeText:"Design, filling and price based on your request",
+    cakesEyebrow:"Our cakes", cakesTitle:"A cake for every occasion", cakesLead:"Every cake is made from scratch. These are just directions — the rest we will create together.",
+    c1:"Wedding cakes", c1p:"from 55 €/kg", c1d:"Tiered cakes with fresh flowers or minimalist finishing.", c1alt:"Wedding cake on a stand",
+    c2:"Birthday cakes", c2p:"from 38 €/kg", c2d:"With lettering, numbers and your favourite flavours.", c2alt:"Chocolate birthday cake with cream roses",
+    c3:"Kids' cakes", c3p:"from 42 €/kg", c3d:"Colourful cakes with figurines and a playful design.", c3alt:"Pink and white kids' cake",
+    c4:"Bento cakes", c4p:"from 22 €", c4d:"A small cake for two or just for you — ready in 2 days.", c4alt:"Small pastel cake",
+    c5:"Mousse cakes", c5p:"from 45 €/kg", c5d:"Light and smooth, with mirror glaze or chocolate drips.", c5alt:"Chocolate mousse cake with ganache",
+    c6:"Cupcakes", c6p:"from 3.50 € each", c6d:"Sets of 6 or more for parties and the office.", c6alt:"Cupcake with cream",
+    howEyebrow:"How to order", howTitle:"Four steps to your cake",
+    s1:"Send a request", s1d:"Occasion, date and an inspiration photo — it takes 2 minutes.",
+    s2:"We agree on details", s2d:"We get in touch within a day with a design and a price.",
+    s3:"30% prepayment", s3d:"After that, the date is reserved just for you.",
+    s4:"Collection", s4d:"Pick it up at the workshop or order delivery in Riga.",
+    formEyebrow:"Request", formTitle:"Tell us about your cake", formLead:"We reply within one working day. The request is not binding.",
+    fOccasion:"Occasion", fChoose:"Choose…", o1:"Birthday", o2:"Wedding", o3:"Kids' party", o4:"Christening", o5:"Company event", o6:"Other",
+    fDate:"Date", fDateHint:"At least 3 days ahead", fGuests:"Number of guests", fGuestsHint:"We count ~150 g per guest",
+    fFilling:"Filling", fUnsure:"Not sure yet — recommend one",
+    p1:"Chocolate & cherry", p2:"Vanilla & berries", p3:"Pistachio & raspberry", p4:"Caramel & banana", p5:"Honey cake", p6:"Lemon & blueberry",
+    fDesign:"Design", optional:"(optional)", fDesignPh:"Colours, lettering, theme, allergies…", fPhoto:"Inspiration photo",
+    fPickup:"Collection", r1:"I'll pick it up", r2:"Delivery in Riga",
+    fName:"Name", fEmail:"Email", fPhone:"Phone", fSubmit:"Send request", demoNote:"Demo website: the request is not sent anywhere.",
+    eRequired:"Please fill in this field", eDate:"We take orders at least 3 days ahead", ePhone:"Enter a phone number", eEmail:"Check the email address",
+    okTitle:"Thank you, {name}!", okText:"Request received. We will contact you within one working day to agree on the design and price.",
+    fillAlt:"Layered cake cut open", fillEyebrow:"Fillings", fillTitle:"A taste they'll remember",
+    p1d:"Chocolate sponge, cherry confit and chocolate ganache.", p2d:"Vanilla sponge, cream cheese and fresh berries.", p3d:"Pistachio cream with raspberry compote.",
+    p4d:"Salted caramel, banana and roasted nuts.", p5d:"Classic honey cake with sour cream frosting.", p6d:"Lemon cream and blueberries — light and fresh.",
+    revEyebrow:"Reviews", revText:"Real customer reviews from Google and Instagram will appear here.",
+    faqEyebrow:"FAQ", faqTitle:"Frequently asked questions",
+    q1:"How far ahead should I order?", a1:"At least 3 days ahead, wedding cakes 2–3 weeks ahead. Bento cakes take 2 days.",
+    q2:"How much is the prepayment?", a2:"30% of the total, the rest when you collect the cake.",
+    q3:"Do you deliver?", a3:"Yes, all over Riga. The price depends on the district — we'll tell you when confirming the order.",
+    q4:"Can you make it gluten- or lactose-free?", a4:"Some fillings can be adapted. Mention allergies in your request and we'll suggest options.",
+    footAbout:"Custom cakes in Riga — handmade from real ingredients.", footContacts:"Contacts", footHours:"Opening hours",
+    hours1:"Tue–Fri 10:00–19:00", hours2:"Sat 10:00–16:00", hours3:"Sun, Mon — closed", demoBy:"Demo website — made by gstudios",
+    title:"Kūku Darbnīca — custom cakes in Riga", kg:" · ≈ {kg} kg"
+  },
   ru: {
     skip:"Перейти к содержанию", navLabel:"Главная навигация", menu:"Меню",
     navCakes:"Торты", navCalc:"Цена", orderThis:"Заказать этот", close:"Закрыть", prev:"Предыдущее", next:"Следующее", fUnsure2:"Пока не знаю",
@@ -741,7 +792,7 @@ dateEl.min = iso(minDate);
 const guests = document.getElementById("guests"), weight = document.getElementById("weight");
 function updateWeight(){
   const n = parseInt(guests.value,10);
-  weight.textContent = n>0 ? t("kg").replace("{kg}", (Math.max(1, Math.ceil(n*0.15*2)/2)).toString().replace(".", lang==="lv"?",":",")) : "";
+  weight.textContent = n>0 ? t("kg").replace("{kg}", (Math.max(1, Math.ceil(n*0.15*2)/2)).toString().replace(".", lang==="en"?".":",")) : "";
 }
 guests.addEventListener("input", updateWeight);
 
@@ -777,7 +828,7 @@ form.addEventListener("submit", e=>{
 const PRICES = {kazu:{kg:55,min:3}, dzimsanas:{kg:38,min:1.5}, bernu:{kg:42,min:1.5}, musa:{kg:45,min:1.5}, bento:{fixed:22}, keksini:{pc:3.5,minPc:6}};
 const TYPEKEY = {kazu:"c1",dzimsanas:"c2",bernu:"c3",bento:"c4",musa:"c5",keksini:"c6"};
 const kG = document.getElementById("kGuests"), kOut = document.getElementById("kGuestsOut");
-const fmt = n => (Math.round(n*100)/100).toLocaleString(lang==="ru"?"ru-RU":"lv-LV",{maximumFractionDigits:2});
+const fmt = n => (Math.round(n*100)/100).toLocaleString(({ru:"ru-RU",en:"en-GB"})[lang]||"lv-LV",{maximumFractionDigits:2});
 const kType = () => document.querySelector("input[name=ktype]:checked").value;
 function calc(){
   const type = kType(), p = PRICES[type], g = +kG.value;
@@ -862,7 +913,7 @@ if("IntersectionObserver" in window){
 
 let saved = "lv";
 try{ saved = localStorage.getItem("kd-lang") || "lv"; }catch(e){}
-if(saved==="ru") setLang("ru"); else calc();
+if(saved==="ru"||saved==="en") setLang(saved); else calc();
 </script>
 </body>
 </html>
