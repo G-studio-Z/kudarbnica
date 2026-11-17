@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kūku Darbnīca — tortes pēc pasūtījuma Rīgā</title>
+<meta name="description" content="Tortes pēc pasūtījuma Rīgā: kāzu, dzimšanas dienas, bērnu un bento tortes. Pieteikums 2 minūtēs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Lora:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FBF6EF; --paper:#FFFFFF; --sand:#F1E7DA; --line:#E3D5C3;
+  --cocoa:#2B1D16; --cocoa-soft:#6B5547;
+  --berry:#A8323F; --berry-dark:#86242F; --pistachio:#7C8F5A;
+  --success:#2F7A4D; --error:#B42318;
+  --r-sm:8px; --r-md:16px; --r-lg:24px;
+  --shadow:0 1px 2px rgba(43,29,22,.06),0 8px 24px rgba(43,29,22,.08);
+  --ring:0 0 0 3px #A8323F55;
+  --serif:"Lora",Georgia,serif; --sans:"DM Sans",system-ui,-apple-system,sans-serif;
+  --max:1160px; --pad:24px; --section:96px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--cream);color:var(--cocoa);font:400 16px/26px var(--sans);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:var(--berry)}
+a:hover{color:var(--berry-dark)}
+:focus-visible{outline:2px solid var(--berry);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;margin:0;letter-spacing:-.01em}
+h1{font-size:56px;line-height:60px}
+h2{font-size:40px;line-height:46px}
+h3{font-size:22px;line-height:30px}
+p{margin:0}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.section{padding:var(--section) 0}
+.alt{background:var(--sand)}
+.eyebrow{font-size:14px;line-height:20px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--berry)}
+.lead{font-size:18px;line-height:28px;color:var(--cocoa-soft);max-width:60ch}
+.head{display:grid;gap:12px;margin-bottom:48px;max-width:68ch}
+.skip{position:absolute;left:-999px;top:8px;background:var(--paper);padding:8px 16px;z-index:100}
+.skip:focus{left:8px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 24px;border-radius:var(--r-sm);font:500 16px/1 var(--sans);text-decoration:none;cursor:pointer;border:1.5px solid transparent;transition:background .15s,color .15s,border-color .15s}
+.btn-primary{background:var(--berry);color:#fff}
+.btn-primary:hover{background:var(--berry-dark);color:#fff}
+.btn-secondary{background:transparent;color:var(--cocoa);border-color:var(--cocoa)}
+.btn-secondary:hover{background:var(--sand);color:var(--cocoa)}
+.btn:focus-visible{outline:none;box-shadow:var(--ring)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:rgba(251,246,239,.94);backdrop-filter:saturate(1.2) blur(6px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:24px}
+.logo{white-space:nowrap;font-family:var(--serif);font-weight:600;font-size:22px;color:var(--cocoa);text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo svg{color:var(--berry)}
+.nav-links{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+.nav-links a{color:var(--cocoa);text-decoration:none;font-weight:500}
+.nav-links a:hover{color:var(--berry)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.lang{display:flex;border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden}
+.lang button{background:transparent;border:0;padding:0 10px;height:36px;font:500 14px var(--sans);color:var(--cocoa-soft);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--cocoa);color:#fff}
+.menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:var(--r-sm);width:44px;height:44px;cursor:pointer;color:var(--cocoa)}
+
+/* hero */
+.hero{padding:72px 0 var(--section)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.hero h1{margin:16px 0 20px}
+.hero .actions{display:flex;flex-wrap:wrap;gap:12px;margin:32px 0 40px}
+.facts{display:flex;flex-wrap:wrap;gap:12px 28px;list-style:none;margin:0;padding:0;color:var(--cocoa-soft);font-size:15px}
+.facts li{display:flex;align-items:center;gap:8px}
+.facts svg{color:var(--pistachio);flex:none}
+.hero-img{position:relative}
+.hero-img img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r-lg)}
+.badge{position:absolute;left:-24px;bottom:32px;background:var(--paper);border-radius:var(--r-md);box-shadow:var(--shadow);padding:16px 20px;max-width:240px}
+.badge strong{display:block;font-family:var(--serif);font-size:22px;line-height:28px}
+.badge span{font-size:14px;line-height:20px;color:var(--cocoa-soft)}
+
+/* gallery */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px 24px}
+.card img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r-md);background:var(--sand)}
+.card h3{margin:16px 0 4px}
+.card .price{font-weight:700;color:var(--berry);font-size:15px}
+.card p{color:var(--cocoa-soft);margin-top:6px}
+.card .card-foot .price{margin:0}
+.card.tall{grid-row:span 2}
+.card.tall img{aspect-ratio:auto;height:calc(100% - 120px);min-height:420px}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;border-top:2px solid var(--cocoa);padding-top:20px}
+.steps li::before{content:"0" counter(s);font-family:var(--serif);font-size:28px;line-height:36px;color:var(--berry);display:block;margin-bottom:12px}
+.steps p{color:var(--cocoa-soft);margin-top:6px}
+
+/* order */
+.order .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:start}
+.order-aside{position:sticky;top:112px;display:grid;gap:20px}
+.order-aside img{border-radius:var(--r-lg);aspect-ratio:1/1;object-fit:cover;width:100%}
+.form{scroll-margin-top:96px;background:var(--paper);border-radius:var(--r-md);box-shadow:var(--shadow);padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.field{display:grid;gap:6px;align-content:start}
+.field.full{grid-column:1/-1}
+label,.legend{font-weight:500;font-size:15px}
+.opt{color:var(--cocoa-soft);font-weight:400}
+input,select,textarea{width:100%;min-height:48px;border:1px solid var(--line);border-radius:var(--r-sm);background:#fff;padding:10px 14px;font:400 16px/24px var(--sans);color:var(--cocoa)}
+textarea{min-height:110px;resize:vertical}
+input[type=file]{padding:10px;min-height:auto}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--berry);box-shadow:var(--ring)}
+.hint{font-size:14px;line-height:20px;color:var(--cocoa-soft)}
+.err{font-size:14px;line-height:20px;color:var(--error);display:none}
+.invalid input,.invalid select,.invalid textarea{border-color:var(--error)}
+.invalid .err{display:block}
+fieldset{border:0;margin:0;padding:0}
+.radios{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+.radio{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:var(--r-sm);padding:0 16px;height:48px;cursor:pointer;font-weight:400}
+.radio input{width:18px;height:18px;min-height:0;accent-color:var(--berry);margin:0}
+.radio:has(input:checked){border-color:var(--berry);background:#A8323F0D}
+.submit-row{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:16px;justify-content:space-between}
+.demo-note{font-size:14px;color:var(--cocoa-soft)}
+.success{display:none;scroll-margin-top:96px;grid-column:1/-1;text-align:left;padding:8px 0}
+.success h3{color:var(--success);margin-bottom:8px}
+.form.sent .field,.form.sent .submit-row{display:none}
+.form.sent .success{display:block}
+
+/* fillings */
+.fill{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.fill img{border-radius:var(--r-lg);aspect-ratio:4/5;object-fit:cover;width:100%}
+.fill dl{margin:0;display:grid;gap:0}
+.fill dl div{padding:18px 0;border-bottom:1px solid var(--line)}
+.fill dl div:first-child{border-top:1px solid var(--line)}
+.fill dt{font-family:var(--serif);font-size:22px;line-height:30px;font-weight:600}
+.fill dd{margin:4px 0 0;color:var(--cocoa-soft)}
+
+/* reviews placeholder */
+.reviews-ph{border:1.5px dashed #D2BFA8;border-radius:var(--r-md);padding:40px;text-align:left;color:var(--cocoa-soft);display:grid;gap:8px}
+
+/* faq */
+.faq{max-width:780px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:first-of-type{border-top:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;padding:20px 0;font-weight:500;font-size:18px;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--serif);font-size:26px;color:var(--berry);line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq details p{padding:0 0 20px;color:var(--cocoa-soft);max-width:68ch}
+
+/* footer */
+footer{background:var(--sand);padding:64px 0 32px;border-top:1px solid var(--line)}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+.foot h3{font-size:18px;line-height:26px;margin-bottom:8px}
+.foot p,.foot a{color:var(--cocoa-soft)}
+.foot a:hover{color:var(--berry)}
+.foot-bottom{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:14px;color:var(--cocoa-soft)}
+
+/* card actions + lightbox trigger */
+.card .zoom{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;border-radius:var(--r-md)}
+.card .zoom img{transition:transform .4s ease}
+.card .zoom:hover img{transform:scale(1.02)}
+.card .zoom:focus-visible{outline:2px solid var(--berry);outline-offset:3px}
+.card-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px}
+.link-btn{background:none;border:0;padding:6px 0;font:500 15px var(--sans);color:var(--berry);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.link-btn:hover{color:var(--berry-dark);text-decoration:underline}
+.lightbox{border:0;padding:0;background:transparent;max-width:min(92vw,900px);max-height:92vh;overflow:visible}
+.lightbox::backdrop{background:rgba(43,29,22,.82)}
+.lightbox figure{margin:0;display:grid;gap:12px}
+.lightbox img{max-height:80vh;width:auto;max-width:100%;border-radius:var(--r-md);margin:0 auto}
+.lightbox figcaption{color:#fff;text-align:center;font-family:var(--serif);font-size:20px}
+.lb-btn{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:0;background:var(--paper);color:var(--cocoa);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow)}
+.lb-prev{left:-64px}.lb-next{right:-64px}
+.lb-close{position:absolute;top:-56px;right:0;width:44px;height:44px;border-radius:50%;border:0;background:var(--paper);color:var(--cocoa);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb-btn:focus-visible,.lb-close:focus-visible{outline:none;box-shadow:var(--ring)}
+
+/* calculator */
+.calc{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:start}
+.calc-controls{display:grid;gap:28px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.chip{position:relative;display:inline-flex;align-items:center;height:44px;padding:0 16px;border:1px solid var(--line);border-radius:999px;background:var(--paper);cursor:pointer;font-weight:500;font-size:15px;user-select:none}
+.chip input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;pointer-events:none}
+.chip:has(input:checked){background:var(--cocoa);border-color:var(--cocoa);color:#fff}
+.chip:has(input:focus-visible){box-shadow:var(--ring)}
+.range-row{display:flex;align-items:center;gap:16px;margin-top:10px}
+input[type=range]{flex:1;min-height:0;height:32px;padding:0;border:0;background:none;accent-color:var(--berry);box-shadow:none}
+.range-out{min-width:92px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.check{display:flex;align-items:center;gap:10px;font-weight:500;cursor:pointer}
+.check input{width:20px;height:20px;min-height:0;accent-color:var(--berry);margin:0}
+.result{position:sticky;top:112px;background:var(--paper);border-radius:var(--r-md);box-shadow:var(--shadow);padding:32px;display:grid;gap:16px}
+.result .total{letter-spacing:-.02em;font-family:var(--serif);font-size:48px;line-height:52px;font-weight:600;font-variant-numeric:tabular-nums}
+.result dl{margin:0;display:grid;gap:8px}
+.result dl div{display:flex;justify-content:space-between;gap:12px;font-size:15px;color:var(--cocoa-soft)}
+.result dd{margin:0;color:var(--cocoa);font-weight:500;font-variant-numeric:tabular-nums}
+.result .note{font-size:14px;line-height:20px;color:var(--cocoa-soft)}
+.calc-hidden{display:none!important}
+
+/* sticky mobile CTA */
+.mobile-cta{display:none}
+@media (max-width:760px){
+  .mobile-cta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:12px 20px calc(12px + env(safe-area-inset-bottom));background:rgba(251,246,239,.96);border-top:1px solid var(--line);transition:transform .25s ease}
+  .mobile-cta .btn{flex:1}
+  .mobile-cta.hide{transform:translateY(110%)}
+  body{padding-bottom:76px}
+  .nav .btn-primary{display:none}
+}
+
+/* reveal */
+.js .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.js .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none}}
+
+/* responsive */
+@media (max-width:960px){
+  :root{--section:64px}
+  .hero .wrap,.order .wrap,.fill{grid-template-columns:1fr;gap:40px}
+  .hero-img{order:-1}
+  .hero-img img{aspect-ratio:4/3}
+  .badge{left:16px;bottom:16px}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .card.tall{grid-row:auto}
+  .card.tall img{height:auto;min-height:0;aspect-ratio:4/5}
+  .steps{grid-template-columns:repeat(2,1fr);gap:32px 24px}
+  .order-aside{position:static}
+  .order-aside img{display:none}
+  .fill img{aspect-ratio:16/10}
+  .calc{grid-template-columns:1fr}
+  .result{position:static}
+  .lb-prev{left:8px}.lb-next{right:8px}
+  .lb-close{top:8px;right:8px}
+  .foot{grid-template-columns:1fr 1fr}
+}
+@media (max-width:1024px){
+  .nav-links{display:none;position:absolute;top:72px;left:0;right:0;background:var(--cream);flex-direction:column;gap:0;border-bottom:1px solid var(--line);padding:8px var(--pad) 16px}
+  .nav-links.open{display:flex}
+  .nav-links a{display:block;padding:12px 0}
+  .menu-btn{display:inline-flex;align-items:center;justify-content:center}
+}
+@media (max-width:600px){
+  :root{--pad:20px}
+  h1{font-size:38px;line-height:44px}
+  h2{font-size:30px;line-height:36px}
+  .hero{padding-top:24px}
+  .grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .form{grid-template-columns:1fr;padding:24px}
+  .foot{grid-template-columns:1fr}
+  .hero .actions .btn{flex:1 1 100%}
+  .nav .logo{font-size:19px;gap:8px}
+  .nav .wrap{gap:12px}
+  .lang button{padding:0 8px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="skip">Pāriet uz saturu</a>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Kūku Darbnīca">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/><path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"/><path d="M2 21h20"/><path d="M7 8v3"/><path d="M12 8v3"/><path d="M17 8v3"/><path d="M7 4h.01"/><path d="M12 4h.01"/><path d="M17 4h.01"/></svg>
+      Kūku Darbnīca
+    </a>
+    <nav aria-label="Galvenā navigācija" data-i18n-aria="navLabel">
+      <ul class="nav-links" id="navlinks">
+        <li><a href="#tortes" data-i18n="navCakes">Tortes</a></li>
+        <li><a href="#kalkulators" data-i18n="navCalc">Cena</a></li>
+        <li><a href="#ka-pasutit" data-i18n="navHow">Kā pasūtīt</a></li>
+        <li><a href="#pildijumi" data-i18n="navFill">Pildījumi</a></li>
+        <li><a href="#jautajumi" data-i18n="navFaq">Jautājumi</a></li>
+      </ul>
+    </nav>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Valoda / Язык">
+        <button type="button" data-lang="lv" aria-pressed="true">LV</button>
+        <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+      </div>
+      <a class="btn btn-primary" href="#pasutit" data-i18n="navOrder">Pasūtīt</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="navlinks" aria-label="Izvēlne" data-i18n-aria="menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow" data-i18n="heroEyebrow">Tortes pēc pasūtījuma Rīgā</p>
+        <h1 data-i18n="heroTitle">Torte tieši jūsu svētkiem</h1>
+        <p class="lead" data-i18n="heroLead">Cepam ar rokām no īsta sviesta, krējuma un šokolādes. Pastāstiet par svētkiem — mēs piedāvāsim dizainu, pildījumu un cenu vienas dienas laikā.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#pasutit" data-i18n="ctaOrder">Pasūtīt torti</a>
+          <a class="btn btn-secondary" href="#tortes" data-i18n="ctaWorks">Skatīt darbus</a>
+        </div>
+        <ul class="facts">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="fact1">Pasūtījumi no 3 dienām iepriekš</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="fact2">Piegāde pa visu Rīgu</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="fact3">No 38 €/kg</span></li>
+        </ul>
+      </div>
+      <div class="hero-img">
+        <img src="images/hero.jpg" alt="Trīsstāvu balta torte ar ķiršiem" data-i18n-alt="heroAlt" width="600" height="750" fetchpriority="high">
+        <div class="badge">
+          <strong data-i18n="badgeTitle">Atbilde 1 dienā</strong>
+          <span data-i18n="badgeText">Dizains, pildījums un cena pēc jūsu pieteikuma</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="tortes">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow" data-i18n="cakesEyebrow">Mūsu tortes</p>
+        <h2 data-i18n="cakesTitle">Katrai svētku reizei — sava torte</h2>
+        <p class="lead" data-i18n="cakesLead">Katru torti veidojam no jauna. Šie ir virzieni — pārējo izdomāsim kopā ar jums.</p>
+      </div>
+      <div class="grid">
+        <article class="card reveal" data-type="kazu">
+          <button class="zoom" type="button" aria-label="Kāzu tortes" data-i18n-aria="c1"><img src="images/kazu.jpg" alt="Kāzu torte uz statīva" data-i18n-alt="c1alt" loading="lazy" width="350" height="438"></button>
+          <h3 data-i18n="c1">Kāzu tortes</h3>
+          <p data-i18n="c1d">Vairāku stāvu tortes ar dzīviem ziediem vai minimālistisku apdari.</p>
+          <div class="card-foot">
+            <p class="price" data-i18n="c1p">no 55 €/kg</p>
+            <button class="link-btn order-this" type="button"><span data-i18n="orderThis">Pasūtīt šo</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+          </div>
+        </article>
+        <article class="card reveal" data-type="dzimsanas">
+          <button class="zoom" type="button" aria-label="Dzimšanas dienai" data-i18n-aria="c2"><img src="images/dzimsanas.jpg" alt="Šokolādes dzimšanas dienas torte ar krēma rozēm" data-i18n-alt="c2alt" loading="lazy" width="350" height="438"></button>
+          <h3 data-i18n="c2">Dzimšanas dienai</h3>
+          <p data-i18n="c2d">Ar uzrakstu, cipariem un jūsu mīļākajām garšām.</p>
+          <div class="card-foot">
+            <p class="price" data-i18n="c2p">no 38 €/kg</p>
+            <button class="link-btn order-this" type="button"><span data-i18n="orderThis">Pasūtīt šo</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+          </div>
+        </article>
+        <article class="card reveal" data-type="bernu">
+          <button class="zoom" type="button" aria-label="Bērnu tortes" data-i18n-aria="c3"><img src="images/bernu.jpg" alt="Rozā un balta bērnu torte" data-i18n-alt="c3alt" loading="lazy" width="350" height="438"></button>
+          <h3 data-i18n="c3">Bērnu tortes</h3>
+          <p data-i18n="c3d">Krāsainas tortes ar figūriņām un rotaļīgu dizainu.</p>
+          <div class="card-foot">
+            <p class="price" data-i18n="c3p">no 42 €/kg</p>
+            <button class="link-btn order-this" type="button"><span data-i18n="orderThis">Pasūtīt šo</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+          </div>
+        </article>
+        <article class="card reveal" data-type="bento">
+          <button class="zoom" type="button" aria-label="Bento tortes" data-i18n-aria="c4"><img src="images/bento.jpg" alt="Neliela pasteļkrāsu torte" data-i18n-alt="c4alt" loading="lazy" width="350" height="438"></button>
+          <h3 data-i18n="c4">Bento tortes</h3>
+          <p data-i18n="c4d">Maza torte divatā vai sev — gatava 2 dienu laikā.</p>
+          <div class="card-foot">
+            <p class="price" data-i18n="c4p">no 22 €</p>
+            <button class="link-btn order-this" type="button"><span data-i18n="orderThis">Pasūtīt šo</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+          </div>
+        </article>
+        <article class="card reveal" data-type="musa">
+          <button class="zoom" type="button" aria-label="Musa tortes" data-i18n-aria="c5"><img src="images/musa.jpg" alt="Šokolādes musa torte ar ganašu" data-i18n-alt="c5alt" loading="lazy" width="350" height="438"></button>
+          <h3 data-i18n="c5">Musa tortes</h3>
+          <p data-i18n="c5d">Vieglas un gludas, ar spoguļglazūru vai šokolādes notecējumiem.</p>
+          <div class="card-foot">
+            <p class="price" data-i18n="c5p">no 45 €/kg</p>
+            <button class="link-btn order-this" type="button"><span data-i18n="orderThis">Pasūtīt šo</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+          </div>
+        </article>
+        <article class="card reveal" data-type="keksini">
+          <button class="zoom" type="button" aria-label="Kēksiņi" data-i18n-aria="c6"><img src="images/keksini.jpg" alt="Kēksiņš ar krēmu" data-i18n-alt="c6alt" loading="lazy" width="350" height="438"></button>
+          <h3 data-i18n="c6">Kēksiņi</h3>
+          <p data-i18n="c6d">Komplekti no 6 gabaliem svētkiem un birojam.</p>
+          <div class="card-foot">
+            <p class="price" data-i18n="c6p">no 3,50 € gab.</p>
+            <button class="link-btn order-this" type="button"><span data-i18n="orderThis">Pasūtīt šo</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="kalkulators">
+    <div class="wrap">
+      <div class="head reveal">
+        <p class="eyebrow" data-i18n="calcEyebrow">Kalkulators</p>
+        <h2 data-i18n="calcTitle">Uzziniet aptuveno cenu uzreiz</h2>
+        <p class="lead" data-i18n="calcLead">Izvēlieties torti, viesu skaitu un dekoru. Precīzu cenu apstiprināsim pēc pieteikuma.</p>
+      </div>
+      <div class="calc reveal">
+        <div class="calc-controls">
+          <fieldset>
+            <legend class="legend" data-i18n="kType">Tortes veids</legend>
+            <div class="chips" id="kTypes">
+              <label class="chip"><input type="radio" name="ktype" value="dzimsanas" checked><span data-i18n="c2">Dzimšanas dienai</span></label>
+              <label class="chip"><input type="radio" name="ktype" value="kazu"><span data-i18n="c1">Kāzu tortes</span></label>
+              <label class="chip"><input type="radio" name="ktype" value="bernu"><span data-i18n="c3">Bērnu tortes</span></label>
+              <label class="chip"><input type="radio" name="ktype" value="musa"><span data-i18n="c5">Musa tortes</span></label>
+              <label class="chip"><input type="radio" name="ktype" value="bento"><span data-i18n="c4">Bento tortes</span></label>
+              <label class="chip"><input type="radio" name="ktype" value="keksini"><span data-i18n="c6">Kēksiņi</span></label>
+            </div>
+          </fieldset>
+          <div class="field" id="kGuestsField">
+            <label for="kGuests" id="kGuestsLabel" data-i18n="kGuests">Viesu skaits</label>
+            <div class="range-row">
+              <input type="range" id="kGuests" min="2" max="100" value="12" aria-describedby="kGuestsOut">
+              <output class="range-out" id="kGuestsOut" for="kGuests">12</output>
+            </div>
+          </div>
+          <div class="field" id="kFillField">
+            <label for="kFill" data-i18n="fFilling">Pildījums</label>
+            <select id="kFill">
+              <option value="0" data-p="p1" data-i18n="p1">Šokolāde un ķirši</option>
+              <option value="0" data-p="p2" data-i18n="p2">Vaniļa un ogas</option>
+              <option value="6" data-p="p3" data-i18n="p3plus">Pistācija un avenes (+6 €/kg)</option>
+              <option value="0" data-p="p4" data-i18n="p4">Karamele un banāns</option>
+              <option value="0" data-p="p5" data-i18n="p5">Medus kūka</option>
+              <option value="0" data-p="p6" data-i18n="p6">Citrons un mellenes</option>
+            </select>
+          </div>
+          <fieldset id="kDecorField">
+            <legend class="legend" data-i18n="kDecor">Dekors</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="kdecor" value="0" checked><span data-i18n="d1">Vienkāršs / uzraksts</span></label>
+              <label class="chip"><input type="radio" name="kdecor" value="15"><span data-i18n="d2">Figūriņas +15 €</span></label>
+              <label class="chip"><input type="radio" name="kdecor" value="25"><span data-i18n="d3">Dzīvi ziedi +25 €</span></label>
+            </div>
+          </fieldset>
+          <label class="check"><input type="checkbox" id="kDelivery"> <span data-i18n="kDelivery">Piegāde pa Rīgu (no 8 €)</span></label>
+        </div>
+
+        <aside class="result" aria-live="polite">
+          <p class="eyebrow" data-i18n="kResult">Aptuvenā cena</p>
+          <p class="total" id="kTotal">≈ 0 €</p>
+          <dl>
+            <div><dt id="kQtyLabel" data-i18n="kWeight">Svars</dt><dd id="kQty">—</dd></div>
+            <div><dt data-i18n="kBase">Torte</dt><dd id="kBase">—</dd></div>
+            <div><dt data-i18n="kDecor">Dekors</dt><dd id="kDec">—</dd></div>
+            <div><dt data-i18n="kDel">Piegāde</dt><dd id="kDel">—</dd></div>
+          </dl>
+          <button class="btn btn-primary" type="button" id="kOrder" data-i18n="kOrder">Pasūtīt ar šiem parametriem</button>
+          <p class="note" data-i18n="kNote">Demo cenas. Gala cena atkarīga no dizaina sarežģītības.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="ka-pasutit">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow" data-i18n="howEyebrow">Kā pasūtīt</p>
+        <h2 data-i18n="howTitle">Četri soļi līdz jūsu tortei</h2>
+      </div>
+      <ol class="steps reveal">
+        <li><h3 data-i18n="s1">Aizpildiet pieteikumu</h3><p data-i18n="s1d">Svētki, datums un iedvesmas foto — tas aizņem 2 minūtes.</p></li>
+        <li><h3 data-i18n="s2">Saskaņojam detaļas</h3><p data-i18n="s2d">Sazināsimies vienas dienas laikā un piedāvāsim dizainu un cenu.</p></li>
+        <li><h3 data-i18n="s3">Priekšapmaksa 30%</h3><p data-i18n="s3d">Pēc tās datums ir rezervēts tikai jums.</p></li>
+        <li><h3 data-i18n="s4">Saņemšana</h3><p data-i18n="s4d">Savāciet darbnīcā vai pasūtiet piegādi pa Rīgu.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section order" id="pasutit">
+    <div class="wrap">
+      <div class="order-aside">
+        <div class="head" style="margin:0">
+          <p class="eyebrow" data-i18n="formEyebrow">Pieteikums</p>
+          <h2 data-i18n="formTitle">Pastāstiet par savu torti</h2>
+          <p class="lead" data-i18n="formLead">Atbildēsim vienas darba dienas laikā. Pieteikums jūs ne pie kā nesaista.</p>
+        </div>
+        <img src="images/pieteikums.jpg" alt="" loading="lazy" width="400" height="400">
+      </div>
+
+      <form class="form reveal" id="orderForm" novalidate>
+        <div class="field">
+          <label for="ftype" data-i18n="kType">Tortes veids</label>
+          <select id="ftype" name="type">
+            <option value="" data-i18n="fUnsure2">Vēl nezinu</option>
+            <option value="kazu" data-i18n="c1">Kāzu tortes</option>
+            <option value="dzimsanas" data-i18n="c2">Dzimšanas dienai</option>
+            <option value="bernu" data-i18n="c3">Bērnu tortes</option>
+            <option value="bento" data-i18n="c4">Bento tortes</option>
+            <option value="musa" data-i18n="c5">Musa tortes</option>
+            <option value="keksini" data-i18n="c6">Kēksiņi</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="occasion" data-i18n="fOccasion">Svētki</label>
+          <select id="occasion" name="occasion" required aria-describedby="occasion-err">
+            <option value="" data-i18n="fChoose">Izvēlieties…</option>
+            <option value="dzimsanas" data-i18n="o1">Dzimšanas diena</option>
+            <option value="kazas" data-i18n="o2">Kāzas</option>
+            <option value="bernu" data-i18n="o3">Bērnu svētki</option>
+            <option value="kristibas" data-i18n="o4">Kristības</option>
+            <option value="uznemums" data-i18n="o5">Uzņēmuma pasākums</option>
+            <option value="cits" data-i18n="o6">Cits</option>
+          </select>
+          <p class="err" id="occasion-err" data-i18n="eRequired">Lūdzu, aizpildiet šo lauku</p>
+        </div>
+
+        <div class="field">
+          <label for="date" data-i18n="fDate">Datums</label>
+          <input type="date" id="date" name="date" required aria-describedby="date-hint date-err">
+          <p class="hint" id="date-hint" data-i18n="fDateHint">Vismaz 3 dienas iepriekš</p>
+          <p class="err" id="date-err" data-i18n="eDate">Pasūtījumus pieņemam vismaz 3 dienas iepriekš</p>
+        </div>
+
+        <div class="field">
+          <label for="guests" data-i18n="fGuests">Viesu skaits</label>
+          <input type="number" id="guests" name="guests" min="1" max="300" inputmode="numeric" aria-describedby="guests-hint">
+          <p class="hint" id="guests-hint" aria-live="polite"><span data-i18n="fGuestsHint">Rēķinām ~150 g uz viesi</span><span id="weight"></span></p>
+        </div>
+
+        <div class="field full">
+          <label for="filling" data-i18n="fFilling">Pildījums</label>
+          <select id="filling" name="filling">
+            <option value="" data-i18n="fUnsure">Vēl nezinu — ieteiksiet</option>
+            <option value="p1" data-i18n="p1">Šokolāde un ķirši</option>
+            <option value="p2" data-i18n="p2">Vaniļa un ogas</option>
+            <option value="p3" data-i18n="p3">Pistācija un avenes</option>
+            <option value="p4" data-i18n="p4">Karamele un banāns</option>
+            <option value="p5" data-i18n="p5">Medus kūka</option>
+            <option value="p6" data-i18n="p6">Citrons un mellenes</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label for="design"><span data-i18n="fDesign">Dizains</span> <span class="opt" data-i18n="optional">(nav obligāti)</span></label>
+          <textarea id="design" name="design" data-i18n-ph="fDesignPh" placeholder="Krāsas, uzraksts, tēma, alerģijas…"></textarea>
+        </div>
+
+        <div class="field full">
+          <label for="photo"><span data-i18n="fPhoto">Iedvesmas foto</span> <span class="opt" data-i18n="optional">(nav obligāti)</span></label>
+          <input type="file" id="photo" name="photo" accept="image/*">
+        </div>
+
+        <fieldset class="field full">
+          <legend class="legend" data-i18n="fPickup">Saņemšana</legend>
+          <div class="radios">
+            <label class="radio"><input type="radio" name="pickup" value="pickup" checked> <span data-i18n="r1">Savākšu darbnīcā</span></label>
+            <label class="radio"><input type="radio" name="pickup" value="delivery"> <span data-i18n="r2">Piegāde pa Rīgu</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="name" data-i18n="fName">Vārds</label>
+          <input type="text" id="name" name="name" autocomplete="given-name" required aria-describedby="name-err">
+          <p class="err" id="name-err" data-i18n="eRequired">Lūdzu, aizpildiet šo lauku</p>
+        </div>
+
+        <div class="field">
+          <label for="phone" data-i18n="fPhone">Tālrunis</label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="+371 2…" required aria-describedby="phone-err">
+          <p class="err" id="phone-err" data-i18n="ePhone">Ievadiet tālruņa numuru</p>
+        </div>
+
+        <div class="field full">
+          <label for="email"><span data-i18n="fEmail">E-pasts</span> <span class="opt" data-i18n="optional">(nav obligāti)</span></label>
+          <input type="email" id="email" name="email" autocomplete="email" aria-describedby="email-err">
+          <p class="err" id="email-err" data-i18n="eEmail">Pārbaudiet e-pasta adresi</p>
+        </div>
+
+        <div class="submit-row">
+          <button class="btn btn-primary" type="submit" data-i18n="fSubmit">Nosūtīt pieteikumu</button>
+          <p class="demo-note" data-i18n="demoNote">Demo vietne: pieteikums netiek nosūtīts.</p>
+        </div>
+
+        <div class="success" role="status" aria-live="polite" tabindex="-1" id="success">
+          <h3 id="successTitle"></h3>
+          <p data-i18n="okText">Pieteikums saņemts. Sazināsimies vienas darba dienas laikā, lai saskaņotu dizainu un cenu.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="section alt" id="pildijumi">
+    <div class="wrap fill reveal">
+      <img src="images/pildijumi.jpg" alt="Torte griezumā ar slāņiem" data-i18n-alt="fillAlt" loading="lazy" width="450" height="560">
+      <div>
+        <div class="head" style="margin-bottom:32px">
+          <p class="eyebrow" data-i18n="fillEyebrow">Pildījumi</p>
+          <h2 data-i18n="fillTitle">Garša, kuru atcerēsies</h2>
+        </div>
+        <dl>
+          <div><dt data-i18n="p1">Šokolāde un ķirši</dt><dd data-i18n="p1d">Šokolādes biskvīts, ķiršu konfitīre un šokolādes ganašs.</dd></div>
+          <div><dt data-i18n="p2">Vaniļa un ogas</dt><dd data-i18n="p2d">Vaniļas biskvīts, krēmsiera krēms un svaigas ogas.</dd></div>
+          <div><dt data-i18n="p3">Pistācija un avenes</dt><dd data-i18n="p3d">Pistāciju krēms ar aveņu kompotu.</dd></div>
+          <div><dt data-i18n="p4">Karamele un banāns</dt><dd data-i18n="p4d">Sālītā karamele, banāns un grauzdēti rieksti.</dd></div>
+          <div><dt data-i18n="p5">Medus kūka</dt><dd data-i18n="p5d">Klasiskā medus kūka ar skābā krējuma krēmu.</dd></div>
+          <div><dt data-i18n="p6">Citrons un mellenes</dt><dd data-i18n="p6d">Citronu krēms un mellenes — viegls un svaigs.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="reviews-ph">
+        <p class="eyebrow" data-i18n="revEyebrow">Atsauksmes</p>
+        <p data-i18n="revText">Šeit būs īstas klientu atsauksmes no Google un Instagram.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="jautajumi">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow" data-i18n="faqEyebrow">Jautājumi</p>
+        <h2 data-i18n="faqTitle">Biežāk uzdotie jautājumi</h2>
+      </div>
+      <div class="faq reveal">
+        <details><summary data-i18n="q1">Cik laicīgi jāpasūta torte?</summary><p data-i18n="a1">Vismaz 3 dienas iepriekš, kāzu tortes — 2–3 nedēļas iepriekš. Bento tortes gatavojam 2 dienu laikā.</p></details>
+        <details><summary data-i18n="q2">Kāda ir priekšapmaksa?</summary><p data-i18n="a2">30% no summas, atlikumu maksājat, saņemot torti.</p></details>
+        <details><summary data-i18n="q3">Vai ir piegāde?</summary><p data-i18n="a3">Jā, pa visu Rīgu. Cena atkarīga no rajona — to pateiksim, saskaņojot pasūtījumu.</p></details>
+        <details><summary data-i18n="q4">Vai varat bez glutēna vai laktozes?</summary><p data-i18n="a4">Daļu pildījumu varam pielāgot. Uzrakstiet par alerģijām pieteikumā, un mēs piedāvāsim variantus.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<dialog class="lightbox" id="lightbox" aria-label="Foto">
+  <button class="lb-close" type="button" aria-label="Aizvērt" data-i18n-aria="close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  <button class="lb-btn lb-prev" type="button" aria-label="Iepriekšējā" data-i18n-aria="prev"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+  <figure><img id="lbImg" src="" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <button class="lb-btn lb-next" type="button" aria-label="Nākamā" data-i18n-aria="next"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+</dialog>
+
+<div class="mobile-cta" id="mobileCta"><a class="btn btn-primary" href="#pasutit" data-i18n="ctaOrder">Pasūtīt torti</a></div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="logo" href="#top">Kūku Darbnīca</a>
+        <p style="margin-top:12px;max-width:36ch" data-i18n="footAbout">Tortes pēc pasūtījuma Rīgā — ar rokām, no īstām sastāvdaļām.</p>
+      </div>
+      <div>
+        <h3 data-i18n="footContacts">Kontakti</h3>
+        <p>Rīga, Tērbatas iela</p>
+        <p>+371 2X XXX XXX</p>
+        <p><a href="#" aria-label="Instagram">Instagram</a></p>
+      </div>
+      <div>
+        <h3 data-i18n="footHours">Darba laiks</h3>
+        <p data-i18n="hours1">O–Pk 10:00–19:00</p>
+        <p data-i18n="hours2">S 10:00–16:00</p>
+        <p data-i18n="hours3">Sv, P — slēgts</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Kūku Darbnīca</span>
+      <span data-i18n="demoBy">Demo vietne — izstrādāja gstudios</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const T = {
+  ru: {
+    skip:"Перейти к содержанию", navLabel:"Главная навигация", menu:"Меню",
+    navCakes:"Торты", navCalc:"Цена", orderThis:"Заказать этот", close:"Закрыть", prev:"Предыдущее", next:"Следующее", fUnsure2:"Пока не знаю",
+    calcEyebrow:"Калькулятор", calcTitle:"Узнайте примерную цену сразу", calcLead:"Выберите торт, количество гостей и декор. Точную цену подтвердим после заявки.",
+    kType:"Вид торта", kGuests:"Количество гостей", kPieces:"Количество капкейков", kDecor:"Декор", d1:"Простой / надпись", d2:"Фигурки +15 €", d3:"Живые цветы +25 €", kDelivery:"Доставка по Риге (от 8 €)",
+    kResult:"Примерная цена", kWeight:"Вес", kQtyPcs:"Количество", kBase:"Торт", kDel:"Доставка", kOrder:"Заказать с этими параметрами", kNote:"Демо-цены. Итоговая цена зависит от сложности дизайна.",
+    p3plus:"Фисташка и малина (+6 €/кг)", guestsWord:"гост.", pcs:"шт.", kgUnit:"кг", none:"—", fixed:"фикс.", included:"включён", pickup:"самовывоз", from:"от",
+    calcDesign:"Из калькулятора: {type}, ~{guests} гостей, декор: {decor}.", navHow:"Как заказать", navFill:"Начинки", navFaq:"Вопросы", navOrder:"Заказать",
+    heroEyebrow:"Торты на заказ в Риге", heroTitle:"Торт именно для вашего праздника",
+    heroLead:"Печём вручную из настоящего масла, сливок и шоколада. Расскажите о празднике — мы предложим дизайн, начинку и цену в течение одного дня.",
+    ctaOrder:"Заказать торт", ctaWorks:"Посмотреть работы",
+    fact1:"Заказы от 3 дней заранее", fact2:"Доставка по всей Риге", fact3:"От 38 €/кг",
+    heroAlt:"Трёхъярусный белый торт с вишней", badgeTitle:"Ответ за 1 день", badgeText:"Дизайн, начинка и цена по вашей заявке",
+    cakesEyebrow:"Наши торты", cakesTitle:"Для каждого праздника — свой торт", cakesLead:"Каждый торт делаем заново. Это лишь направления — остальное придумаем вместе с вами.",
+    c1:"Свадебные торты", c1p:"от 55 €/кг", c1d:"Многоярусные торты с живыми цветами или минималистичным декором.", c1alt:"Свадебный торт на подставке",
+    c2:"На день рождения", c2p:"от 38 €/кг", c2d:"С надписью, цифрами и вашими любимыми вкусами.", c2alt:"Шоколадный торт на день рождения с кремовыми розами",
+    c3:"Детские торты", c3p:"от 42 €/кг", c3d:"Яркие торты с фигурками и игривым дизайном.", c3alt:"Розово-белый детский торт",
+    c4:"Бенто-торты", c4p:"от 22 €", c4d:"Маленький торт на двоих или для себя — готов за 2 дня.", c4alt:"Небольшой торт пастельных цветов",
+    c5:"Муссовые торты", c5p:"от 45 €/кг", c5d:"Лёгкие и гладкие, с зеркальной глазурью или шоколадными подтёками.", c5alt:"Шоколадный муссовый торт с ганашем",
+    c6:"Капкейки", c6p:"от 3,50 € шт.", c6d:"Наборы от 6 штук для праздника и офиса.", c6alt:"Капкейк с кремом",
+    howEyebrow:"Как заказать", howTitle:"Четыре шага до вашего торта",
+    s1:"Оставьте заявку", s1d:"Повод, дата и фото-пример — это займёт 2 минуты.",
+    s2:"Согласуем детали", s2d:"Свяжемся в течение дня и предложим дизайн и цену.",
+    s3:"Предоплата 30%", s3d:"После неё дата закреплена только за вами.",
+    s4:"Получение", s4d:"Заберите в мастерской или закажите доставку по Риге.",
+    formEyebrow:"Заявка", formTitle:"Расскажите о своём торте", formLead:"Ответим в течение одного рабочего дня. Заявка ни к чему не обязывает.",
+    fOccasion:"Повод", fChoose:"Выберите…", o1:"День рождения", o2:"Свадьба", o3:"Детский праздник", o4:"Крестины", o5:"Корпоратив", o6:"Другое",
+    fDate:"Дата", fDateHint:"Минимум за 3 дня", fGuests:"Количество гостей", fGuestsHint:"Считаем ~150 г на гостя",
+    fFilling:"Начинка", fUnsure:"Пока не знаю — посоветуйте",
+    p1:"Шоколад и вишня", p2:"Ваниль и ягоды", p3:"Фисташка и малина", p4:"Карамель и банан", p5:"Медовик", p6:"Лимон и черника",
+    fDesign:"Дизайн", optional:"(необязательно)", fDesignPh:"Цвета, надпись, тема, аллергии…", fPhoto:"Фото-пример",
+    fPickup:"Получение", r1:"Заберу в мастерской", r2:"Доставка по Риге",
+    fName:"Имя", fEmail:"Почта", fPhone:"Телефон", fSubmit:"Отправить заявку", demoNote:"Демо-сайт: заявка никуда не отправляется.",
+    eRequired:"Пожалуйста, заполните это поле", eDate:"Принимаем заказы минимум за 3 дня", ePhone:"Введите номер телефона", eEmail:"Проверьте адрес почты",
+    okTitle:"Спасибо, {name}!", okText:"Заявка получена. Свяжемся в течение одного рабочего дня, чтобы согласовать дизайн и цену.",
+    fillAlt:"Торт в разрезе со слоями", fillEyebrow:"Начинки", fillTitle:"Вкус, который запомнят",
+    p1d:"Шоколадный бисквит, вишнёвый конфитюр и шоколадный ганаш.", p2d:"Ванильный бисквит, крем-чиз и свежие ягоды.", p3d:"Фисташковый крем с малиновым компоте.",
+    p4d:"Солёная карамель, банан и обжаренные орехи.", p5d:"Классический медовик со сметанным кремом.", p6d:"Лимонный крем и черника — лёгкий и свежий.",
+    revEyebrow:"Отзывы", revText:"Здесь будут настоящие отзывы клиентов из Google и Instagram.",
+    faqEyebrow:"Вопросы", faqTitle:"Частые вопросы",
+    q1:"За сколько дней заказывать торт?", a1:"Минимум за 3 дня, свадебные — за 2–3 недели. Бенто-торты готовим за 2 дня.",
+    q2:"Какая предоплата?", a2:"30% от суммы, остаток — при получении торта.",
+    q3:"Есть ли доставка?", a3:"Да, по всей Риге. Цена зависит от района — назовём её при согласовании заказа.",
+    q4:"Можно без глютена или лактозы?", a4:"Часть начинок можем адаптировать. Напишите об аллергиях в заявке, и мы предложим варианты.",
+    footAbout:"Торты на заказ в Риге — вручную, из настоящих ингредиентов.", footContacts:"Контакты", footHours:"Время работы",
+    hours1:"Вт–Пт 10:00–19:00", hours2:"Сб 10:00–16:00", hours3:"Вс, Пн — выходной", demoBy:"Демо-сайт — сделано gstudios",
+    title:"Kūku Darbnīca — торты на заказ в Риге", kg:" · ≈ {kg} кг"
+  }
+};
+const LV = {guestsWord:"viesi", pcs:"gab.", kgUnit:"kg", none:"—", fixed:"fiks.", included:"iekļauts", pickup:"savākšana", from:"no", kPieces:"Kēksiņu skaits", kQtyPcs:"Skaits", calcDesign:"No kalkulatora: {type}, ~{guests} viesi, dekors: {decor}.", okTitle:"Paldies, {name}!", title:"Kūku Darbnīca — tortes pēc pasūtījuma Rīgā", kg:" · ≈ {kg} kg"};
+// collect Latvian originals from the page
+document.querySelectorAll("[data-i18n]").forEach(el=>{ LV[el.dataset.i18n] ??= el.textContent; });
+document.querySelectorAll("[data-i18n-alt]").forEach(el=>{ LV[el.dataset.i18nAlt] ??= el.alt; });
+document.querySelectorAll("[data-i18n-ph]").forEach(el=>{ LV[el.dataset.i18nPh] ??= el.placeholder; });
+document.querySelectorAll("[data-i18n-aria]").forEach(el=>{ LV[el.dataset.i18nAria] ??= el.getAttribute("aria-label"); });
+T.lv = LV;
+let lang = "lv";
+const t = k => (T[lang][k] ?? LV[k] ?? "");
+
+function setLang(l){
+  lang = l;
+  document.documentElement.lang = l;
+  document.title = t("title");
+  document.querySelectorAll("[data-i18n]").forEach(el=>el.textContent = t(el.dataset.i18n));
+  document.querySelectorAll("[data-i18n-alt]").forEach(el=>el.alt = t(el.dataset.i18nAlt));
+  document.querySelectorAll("[data-i18n-ph]").forEach(el=>el.placeholder = t(el.dataset.i18nPh));
+  document.querySelectorAll("[data-i18n-aria]").forEach(el=>el.setAttribute("aria-label", t(el.dataset.i18nAria)));
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.lang===l));
+  updateWeight();
+  if(typeof calc==="function" && document.getElementById("kTotal")) calc();
+  try{ localStorage.setItem("kd-lang", l); }catch(e){}
+}
+document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
+
+// mobile menu
+const menuBtn = document.querySelector(".menu-btn"), links = document.getElementById("navlinks");
+menuBtn.addEventListener("click",()=>{ const o = links.classList.toggle("open"); menuBtn.setAttribute("aria-expanded", o); });
+links.addEventListener("click",e=>{ if(e.target.closest("a")){ links.classList.remove("open"); menuBtn.setAttribute("aria-expanded", false);} });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape" && links.classList.contains("open")){ links.classList.remove("open"); menuBtn.setAttribute("aria-expanded", false); menuBtn.focus(); } });
+
+// form
+const form = document.getElementById("orderForm");
+const dateEl = document.getElementById("date");
+const minDate = new Date(); minDate.setDate(minDate.getDate()+3);
+const iso = d => new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10);
+dateEl.min = iso(minDate);
+
+const guests = document.getElementById("guests"), weight = document.getElementById("weight");
+function updateWeight(){
+  const n = parseInt(guests.value,10);
+  weight.textContent = n>0 ? t("kg").replace("{kg}", (Math.max(1, Math.ceil(n*0.15*2)/2)).toString().replace(".", lang==="lv"?",":",")) : "";
+}
+guests.addEventListener("input", updateWeight);
+
+function check(field, ok){ field.closest(".field").classList.toggle("invalid", !ok); return ok; }
+function validate(el){
+  const v = el.value.trim();
+  switch(el.id){
+    case "occasion": case "name": return check(el, v!=="");
+    case "date": return check(el, v!=="" && v >= dateEl.min);
+    case "phone": return check(el, v.replace(/[^\d]/g,"").length >= 8);
+    case "email": return check(el, v==="" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
+  }
+  return true;
+}
+["occasion","date","name","phone","email"].forEach(id=>{
+  const el = document.getElementById(id);
+  el.addEventListener("blur",()=>{ if(el.value) validate(el); });
+  el.addEventListener("input",()=>{ if(el.closest(".field").classList.contains("invalid")) validate(el); });
+});
+form.addEventListener("submit", e=>{
+  e.preventDefault();
+  const els = ["occasion","date","name","phone","email"].map(id=>document.getElementById(id));
+  const bad = els.filter(el=>!validate(el));
+  els.forEach(el=>el.setAttribute("aria-invalid", bad.includes(el)));
+  if(bad.length){ bad[0].focus(); return; }
+  // DEMO: here the form would be sent (e.g. to Formspree)
+  document.getElementById("successTitle").textContent = t("okTitle").replace("{name}", document.getElementById("name").value.trim());
+  form.classList.add("sent");
+  const ok=document.getElementById("success"); ok.focus({preventScroll:true}); form.scrollIntoView({behavior:"smooth",block:"start"});
+});
+
+// ---- calculator ----
+const PRICES = {kazu:{kg:55,min:3}, dzimsanas:{kg:38,min:1.5}, bernu:{kg:42,min:1.5}, musa:{kg:45,min:1.5}, bento:{fixed:22}, keksini:{pc:3.5,minPc:6}};
+const TYPEKEY = {kazu:"c1",dzimsanas:"c2",bernu:"c3",bento:"c4",musa:"c5",keksini:"c6"};
+const kG = document.getElementById("kGuests"), kOut = document.getElementById("kGuestsOut");
+const fmt = n => (Math.round(n*100)/100).toLocaleString(lang==="ru"?"ru-RU":"lv-LV",{maximumFractionDigits:2});
+const kType = () => document.querySelector("input[name=ktype]:checked").value;
+function calc(){
+  const type = kType(), p = PRICES[type], g = +kG.value;
+  const decor = +document.querySelector("input[name=kdecor]:checked").value;
+  const extra = +document.getElementById("kFill").value;
+  const del = document.getElementById("kDelivery").checked ? 8 : 0;
+  document.getElementById("kGuestsField").classList.toggle("calc-hidden", type==="bento");
+  document.getElementById("kFillField").classList.toggle("calc-hidden", type==="keksini");
+  document.getElementById("kGuestsLabel").textContent = t(type==="keksini" ? "kPieces" : "kGuests");
+  kOut.textContent = type==="keksini" ? `${Math.max(g,p.minPc)} ${t("pcs")}` : `${g} ${t("guestsWord")}`;
+  let base, qty, label = t("kWeight");
+  if (p.fixed){ base = p.fixed; qty = "~0,5 " + t("kgUnit"); }
+  else if (p.pc){ const n = Math.max(g, p.minPc); base = n*p.pc; qty = n+" "+t("pcs"); label = t("kQtyPcs"); }
+  else { const kg = Math.max(p.min, Math.ceil(g*0.15*2)/2); base = kg*(p.kg+extra); qty = fmt(kg)+" "+t("kgUnit"); }
+  document.getElementById("kQtyLabel").textContent = label;
+  document.getElementById("kQty").textContent = qty;
+  document.getElementById("kBase").textContent = fmt(base)+" €";
+  document.getElementById("kDec").textContent = decor ? "+"+decor+" €" : t("included");
+  document.getElementById("kDel").textContent = del ? t("from")+" "+del+" €" : t("pickup");
+  document.getElementById("kTotal").textContent = "≈ " + Math.round(base+decor+del) + " €";
+}
+document.querySelector(".calc").addEventListener("input", calc);
+document.querySelector(".calc").addEventListener("change", calc);
+
+function goToForm(type){
+  if(type) document.getElementById("ftype").value = type;
+  const occ = {kazu:"kazas", bernu:"bernu", dzimsanas:"dzimsanas"}[type];
+  const o = document.getElementById("occasion");
+  if(occ && !o.value) o.value = occ;
+  document.getElementById("pasutit").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
+  setTimeout(()=>document.getElementById("ftype").focus({preventScroll:true}), 450);
+}
+document.getElementById("kOrder").addEventListener("click", ()=>{
+  const type = kType(), g = +kG.value;
+  if(type!=="bento") document.getElementById("guests").value = g;
+  const opt = document.getElementById("kFill").selectedOptions[0];
+  if(type!=="keksini") document.getElementById("filling").value = opt.dataset.p;
+  const decorLabel = document.querySelector("input[name=kdecor]:checked").nextElementSibling.textContent;
+  const d = document.getElementById("design");
+  const line = t("calcDesign").replace("{type}", t(TYPEKEY[type])).replace("{guests}", g).replace("{decor}", decorLabel);
+  if(!d.value.includes(line)) d.value = (d.value ? d.value+"\n" : "") + line;
+  if(document.getElementById("kDelivery").checked) document.querySelector("input[name=pickup][value=delivery]").checked = true;
+  updateWeight();
+  goToForm(type);
+});
+document.querySelectorAll(".order-this").forEach(b=>b.addEventListener("click",()=>goToForm(b.closest(".card").dataset.type)));
+
+// ---- lightbox ----
+const lb = document.getElementById("lightbox"), lbImg = document.getElementById("lbImg"), lbCap = document.getElementById("lbCap");
+const cards = [...document.querySelectorAll(".card")];
+let lbIdx = 0, lbReturn = null;
+function showLb(i){
+  lbIdx = (i + cards.length) % cards.length;
+  const img = cards[lbIdx].querySelector("img");
+  lbImg.src = img.src; lbImg.alt = img.alt;
+  lbCap.textContent = cards[lbIdx].querySelector("h3").textContent;
+}
+cards.forEach((c,i)=>c.querySelector(".zoom").addEventListener("click",e=>{ lbReturn = e.currentTarget; showLb(i); lb.showModal(); }));
+lb.querySelector(".lb-prev").addEventListener("click",()=>showLb(lbIdx-1));
+lb.querySelector(".lb-next").addEventListener("click",()=>showLb(lbIdx+1));
+lb.querySelector(".lb-close").addEventListener("click",()=>lb.close());
+lb.addEventListener("click",e=>{ if(e.target===lb) lb.close(); });
+lb.addEventListener("keydown",e=>{ if(e.key==="ArrowLeft") showLb(lbIdx-1); if(e.key==="ArrowRight") showLb(lbIdx+1); });
+lb.addEventListener("close",()=>{ if(lbReturn) lbReturn.focus(); });
+let tx=null; lb.addEventListener("touchstart",e=>tx=e.touches[0].clientX,{passive:true});
+lb.addEventListener("touchend",e=>{ if(tx===null) return; const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>50) showLb(lbIdx+(dx<0?1:-1)); tx=null; });
+
+// ---- mobile CTA hides near the form ----
+const cta = document.getElementById("mobileCta");
+if("IntersectionObserver" in window){
+  const vis = {};
+  const io = new IntersectionObserver(es=>{ es.forEach(e=>vis[e.target.id||"hero"] = e.isIntersecting); cta.classList.toggle("hide", !!(vis.pasutit || vis.hero)); },{threshold:0.05});
+  io.observe(document.getElementById("pasutit")); io.observe(document.querySelector(".hero .actions"));
+}
+
+// ---- reveal on scroll ----
+document.documentElement.classList.add("js");
+if("IntersectionObserver" in window){
+  const ro = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); ro.unobserve(e.target);} }),{rootMargin:"0px 0px -8% 0px"});
+  document.querySelectorAll(".reveal").forEach((el,i)=>{ if(el.classList.contains("card")) el.style.transitionDelay = (i%3)*80+"ms"; ro.observe(el); });
+} else document.querySelectorAll(".reveal").forEach(el=>el.classList.add("in"));
+
+let saved = "lv";
+try{ saved = localStorage.getItem("kd-lang") || "lv"; }catch(e){}
+if(saved==="ru") setLang("ru"); else calc();
+</script>
+</body>
+</html>
